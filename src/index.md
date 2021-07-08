@@ -10,6 +10,6 @@ For an overview of the linked open data standards adopted and extended by PMD yo
 
 This site provides linked data representations of the ontologies created for PMD:
 
-- [PMDCAT](/pmdcat)
-- [PMDGEO](/def/pmdgeo)
-- [PMDKOS](/def/pmdkos)
+- [PMDCAT](./pmdcat)
+- [PMDGEO](./def/pmdgeo)
+- [PMDKOS](./def/pmdkos)
