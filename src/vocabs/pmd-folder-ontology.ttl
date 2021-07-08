@@ -1,0 +1,44 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> . 
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix folder: <http://publishmydata.com/def/ontology/folder/> .
+
+folder:parentFolder a rdf:Property;
+  rdfs:label "Parent Folder";
+  rdfs:subPropertyOf skos:broader;
+  rdfs:comment "Defines a folder as being in another folder";
+  .
+
+folder:inTree a rdf:Property;
+  rdfs:label "in tree";
+  rdfs:subPropertyOf skos:topConceptOf;
+  rdfs:comment "Specifies that this folder represents a the root of a tree in the specified concept scheme.";
+  .
+
+folder:hasTree a rdf:Property;
+  rdfs:label "has tree";
+  rdfs:subPropertyOf  skos:hasTopConcept;
+  rdfs:comment "Specifies which folders are the root of hierarchy trees in the scheme";
+  .
+
+folder:defaultTree a rdf:Property;
+  rdfs:label "default tree";
+  rdfs:comment "Which hierarchy tree is the default for this site"
+  .
+
+folder:inFolder a rdf:Property;
+  rdfs:label "in folder";
+  rdfs:subPropertyOf dc:subject; 
+  rdfs:comment "Defines a resource (dataset or vocab) as being in a location in a hierarchyTree";
+  .
+
+folder:Folder a rdfs:Class;
+  rdfs:label "Folder";
+  rdfs:comment "A folder holds a set of resources";
+  .

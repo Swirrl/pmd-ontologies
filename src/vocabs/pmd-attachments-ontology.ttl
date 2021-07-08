@@ -1,0 +1,43 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pmd:     <http://publishmydata.com/def/ontology/attachment/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+pmd:hasAttachment a rdf:Property;
+  rdfs:label "has file attachment";
+  rdfs:domain pmd:Dataset;
+  rdfs:range pmd:Attachment;
+  .
+
+pmd:Attachment a rdfs:Class;
+  rdfs:label "Attachment";
+  .
+
+pmd:sizeInBytes a rdf:Property;
+  rdfs:label "size in Bytes";
+  rdfs:domain pmd:Attachment;
+  rdfs:range xsd:integer;
+  .
+
+pmd:fileName a rdf:Property;
+  rdfs:label "File name";
+  rdfs:domain pmd:Attachment;
+  rdfs:range xsd:string;
+  .
+
+pmd:fileExtension a rdf:Property;
+  rdfs:label "File extension";
+  rdfs:domain pmd:Attachment;
+  rdfs:range xsd:string;
+  .
+
+pmd:hasURL a rdf:Property;
+  rdfs:label "has URL";
+  rdfs:domain xsd:anyURI;
+  rdfs:range xsd:anyURI;
+  .
+
+pmd:mediaType a rdf:Property;
+  rdfs:domain pmd:Attachment;
+  rdfs:label "media type";
+  .

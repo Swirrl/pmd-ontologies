@@ -1,0 +1,67 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix pmd: <http://publishmydata.com/def/cube/> .
+
+pmd:ontology a owl:Ontology;
+  rdfs:label "Publish My Data Cube Extensions Ontology";
+  dcterms:description "This ontology extends the RDF Data Cube Vocabulary to support ratio observations and provides some commonly-used dimension properties";
+  pmd:contactEmail "hello@swirrl.com";
+  dcterms:issued "2015-12-02"^^xsd:date;
+  .
+
+pmd:hasNumerator a rdf:Property;
+  rdfs:label "has numerator"@en;
+  rdfs:comment "Links to the observation used as the numerator in the calculation of a ratio"@en;
+  rdfs:domain qb:Observation;
+  rdfs:range qb:Observation;
+  rdfs:seeAlso pmd:numeratorValue;
+  rdfs:isDefinedBy pmd:ontology;
+  .
+
+pmd:hasDenominator a rdf:Property;
+  rdfs:label "has denominator"@en;
+  rdfs:comment "Links to the observation used as the denominator in the calculation of a ratio"@en;
+  rdfs:domain qb:Observation;
+  rdfs:range qb:Observation;
+  rdfs:seeAlso pmd:denominatorValue;
+  rdfs:isDefinedBy pmd:ontology;
+  .
+
+pmd:numeratorValue a rdf:Property;
+  rdfs:label "numerator value"@en;
+  rdfs:comment "The value used as a numerator in the calculation of the ratio"@en;
+  rdfs:domain qb:Observation;
+  rdfs:subPropertyOf sdmx-measure:obsValue;
+  rdfs:seeAlso pmd:hasNumerator;
+  rdfs:isDefinedBy pmd:ontology;
+  .
+
+pmd:denominatorValue a rdf:Property;
+  rdfs:label "denominator value"@en;
+  rdfs:comment "The value used as a denominator in the calculation of the ratio"@en;
+  rdfs:domain qb:Observation;
+  rdfs:subPropertyOf sdmx-measure:obsValue;
+  rdfs:seeAlso pmd:hasDenominator;
+  rdfs:isDefinedBy pmd:ontology;
+  .
+
+pmd:multiplierValue a qb:AttributeProperty, rdf:Property;
+  rdfs:label "multiplier value"@en;
+  rdfs:comment "The value used as a multiplier in the calculation of the ratio"@en;
+  rdfs:domain qb:Observation;
+  rdfs:isDefinedBy pmd:ontology;
+  .
+
+<http://publishmydata.com/def/qb/codesUsed> a rdf:Property;
+  rdfs:label "codes used in this component"@en;
+  rdfs:comment "A collection of codes that appear in this cube as values for the specified component. This may be a subset of the complete codelist(s) of available values (which may be specified with qb:codeList). Those codelist(s) should be consulted for hierarchy information. This property is simply to enumerates the cube's margins."@en;
+  rdfs:domain qb:ComponentSpecification;
+  rdfs:range skos:Collection;
+  rdfs:seeAlso qb:codeList;
+  rdfs:isDefinedBy pmd:ontology;
+  .

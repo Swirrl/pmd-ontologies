@@ -1,0 +1,232 @@
+@prefix : <http://publishmydata.com/def/pmdui#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pmdcat: <http://publishmydata.com/pmdcat#> .
+@base <http://publishmydata.com/def/pmdui> .
+
+<http://publishmydata.com/def/pmdui> rdf:type owl:Ontology ;
+                                      rdfs:comment "The PMDUI vocab.  Primarily describes how modules (code) and nav interact with resources in the database." ;
+                                      rdfs:label "Publish My Data UI Ontology" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://publishmydata.com/def/pmdui#hasDisplayContext
+:hasDisplayContext rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Module ,
+                               :Nav ,
+                               :NavItem ;
+                   rdfs:range :DisplayContext ;
+                   rdfs:comment "The context in which the UI element should be displayed.  e.g. if a SubModule hasDisplayContext pmdui:Admin then it will be displayed in Admin." .
+
+
+###  http://publishmydata.com/def/pmdui#hasLayout
+:hasLayout rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Site ;
+           rdfs:range :Layout ;
+           rdfs:comment "A page layout.  Currently just associates a site with its Navbar, but in the future may contain other UI concepts as data; such as Header, Footer, HTML Meta data etc" .
+
+
+###  http://publishmydata.com/def/pmdui#hasLogo
+:hasLogo rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdf:type owl:IrreflexiveProperty ;
+         rdfs:domain :Nav ;
+         rdfs:range :Logo ;
+         rdfs:comment "Associates a logo / image with the Navbar" .
+
+
+###  http://publishmydata.com/def/pmdui#hasModule
+:hasModule rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdf:type owl:IrreflexiveProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:range :Module ;
+           rdfs:comment "Links an arbitrary RDF resource to a module which provides some bespoke behaviour for that resource." .
+
+
+###  http://publishmydata.com/def/pmdui#hasChildNavItem
+:hasChildNavItem rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :Nav ;
+            rdfs:range :NavItem ;
+            rdfs:comment "Associates an item in the navigation with its Nav" .
+
+
+###  http://publishmydata.com/def/pmdui#hasRootNav
+:hasRootNav rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :Layout ;
+            rdfs:range :RootNav ;
+            rdfs:comment "Connects a layout to its root navbar" .
+
+
+###  http://publishmydata.com/def/pmdui#hasParentNavItem
+:hasParentNavItem rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain :SubModule ;
+                  rdfs:range :Module ;
+                  rdfs:comment "Specifies a module is a submodule of another.  When a submodule displays in the UI its parent module will be selected in the Nav." .
+
+###  http://publishmydata.com/def/pmdui#hasLayout
+:inRootNav rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :NavItem ;
+           rdfs:range :Nav ;
+           rdfs:comment "A page layout.  Currently just associates a site with its Navbar, but in the future may contain other UI concepts as data; such as Header, Footer, HTML Meta data etc" .
+
+###  http://publishmydata.com/def/pmdui#linksToResource
+:linksToResource a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty ;
+    rdfs:label "links to resource" ;
+    rdfs:comment "The resource that this NavItem links to." ;
+    rdfs:domain :NavItem ;
+    rdfs:range rdfs:Resource .
+
+###  http://publishmydata.com/def/pmdui#attachToType
+:attachToType a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty ;
+    rdfs:label "attaches to type" ;
+    rdfs:comment "Specified the type of dataset contents that should have this submodule." ;
+    rdfs:domain :SubModule ;
+    rdfs:range pmdcat:DatasetContents .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://publishmydata.com/def/pmdui#imagePath
+:imagePath rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:range xsd:string .
+
+
+###  http://publishmydata.com/def/pmdui#route
+:route rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :Module ;
+       rdfs:range xsd:string ;
+       rdfs:comment "A relative route (path) to the modules HTTP handler" .
+
+###  http://publishmydata.com/def/pmdui#isoCompId
+:isoCompId rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Module ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The id of the isomorphic component that renders module's UI" .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://publishmydata.com/def/pmdui#DisplayContext
+:DisplayContext rdf:type owl:Class ;
+                owl:disjointWith :Site ;
+                rdfs:comment """A DisplayContext represents the context in which something should display.  For example if a module is displayed in \"Admin only\" it may have the context pmdui:logged-in.
+
+This ontology defines a few well known individuals to represent common contexts, however others may be defined, elsewhere.""" ;
+                rdfs:label "DisplayContext" .
+
+
+###  http://publishmydata.com/def/pmdui#Layout
+:Layout rdf:type owl:Class ;
+        owl:disjointWith :Site ;
+        rdfs:label "Layout" .
+
+
+###  http://publishmydata.com/def/pmdui#Logo
+:Logo rdf:type owl:Class ;
+      rdfs:subClassOf :Widget ;
+      rdfs:label "Logo" .
+
+
+###  http://publishmydata.com/def/pmdui#Module
+:Module rdf:type owl:Class ;
+        rdfs:label "Module" .
+
+
+###  http://publishmydata.com/def/pmdui#RawExploreTable
+:RawExploreTable rdfs:subClassOf :Module .
+    # :clojureFn "mut.cube.explore.ui/explore-panel" .
+
+###  http://publishmydata.com/def/pmdui#ConceptList
+:ConceptList rdfs:subClassOf :Module .
+    # :clojureFn "mut.cube.filters.concept-list/concept-list-selection" .
+
+###  http://publishmydata.com/def/pmdui#Drilldown
+:Drilldown rdfs:subClassOf :Module .
+    #:clojureFn "mut.cube.filters.tree-drilldown/drilldown" .
+
+###  http://publishmydata.com/def/pmdui#About
+:About rdfs:subClassOf :Module .
+    #:clojureFn "mut.about.ui/about-panel" .
+
+###  http://publishmydata.com/def/pmdui#Nav
+:Nav rdf:type owl:Class ;
+     rdfs:subClassOf :Widget ;
+     rdfs:comment "A Navigation bar" ;
+     rdfs:label "Nav" .
+
+
+###  http://publishmydata.com/def/pmdui#NavItem
+:NavItem rdf:type owl:Class ;
+         rdfs:subClassOf :Widget ;
+         rdfs:comment "An item in the Nav.  Represented as a link to a route or URL" ;
+         rdfs:label "NavItem" .
+
+
+###  http://publishmydata.com/def/pmdui#RootNav
+:RootNav rdf:type owl:Class ;
+         rdfs:subClassOf :Nav ;
+         rdfs:comment "The Root Navbar.  A navbar at the top of the hierarchy." .
+
+
+###  http://publishmydata.com/def/pmdui#Site
+:Site rdf:type owl:Class ;
+      rdfs:label "Site" .
+
+
+###  http://publishmydata.com/def/pmdui#SubModule
+:SubModule rdf:type owl:Class ;
+           rdfs:subClassOf :Module ;
+           rdfs:label "SubModule" .
+
+
+###  http://publishmydata.com/def/pmdui#Widget
+:Widget rdf:type owl:Class ;
+        rdfs:label "Widget" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://publishmydata.com/def/pmdui#logged-in
+:logged-in rdf:type owl:NamedIndividual ,
+                    :DisplayContext ;
+           rdfs:comment "A display context representing whether something should show when a user is logged in" .
+
+
+###  http://publishmydata.com/def/pmdui#not-logged-in
+:not-logged-in rdf:type owl:NamedIndividual ,
+                        :DisplayContext ;
+               rdfs:comment "A display context representing whether a UI widget should show when a user is not logged in" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :logged-in
+                        :not-logged-in
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
