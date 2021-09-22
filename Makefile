@@ -5,13 +5,17 @@ define meta_redirect
 	echo "<meta http-equiv="Refresh" content=\"0; url='$(RAW_BASE_URL)/$(2)'\" />" > docs/$(1).html
 endef
 
+define meta_redirect_home
+  echo "<meta http-equiv="Refresh" content=\"0; url='https://swirrl.com'\" />" > docs/index.html
+endef
+
 all: docs/index.html docs/def
 
 docs:
 	mkdir docs
 
 docs/index.html: docs
-	pandoc src/index.md > $@
+	$(call meta_redirect_home)
 
 docs/def: docs
 	mkdir docs/def
