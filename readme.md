@@ -2,7 +2,9 @@
 
 This repository hosts the PMD ontologies for http://publishmydata.com.
 
-You can view the ontologies at https://swirrl.github.io/pmd-ontologies.
+You can view the ontologies on this domain, served via github pages from the content in `docs` as described below.
+
+e.g. http://publishmydata.com/def/pmdkos
 
 ## Building
 
