@@ -7,3 +7,7 @@ The `src` in this repository is used as a dependency of other projects, e.g. htt
 You can browse the ontologies by dereferencing the URIs in your browser. e.g. http://publishmydata.com/def/pmdkos will redirect to a page served at http://ontologies.publishmydata.com/ontologies/pmdkos (served by Netlify).
 
 At the moment, rewrites for publishmydata.com URIs are handled by the Netlify config that serves swirrl.com (see https://github.com/Swirrl/swirrldotcom)
+
+# Licence
+
+These works have been licensed by Swirrl IT LTD under the [CC0 1.0 Universal Licence](https://creativecommons.org/publicdomain/zero/1.0/).
