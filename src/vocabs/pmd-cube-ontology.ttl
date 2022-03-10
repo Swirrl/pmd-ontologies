@@ -6,9 +6,11 @@
 @prefix sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#> .
 @prefix qb: <http://purl.org/linked-data/cube#> .
 @prefix pmd: <http://publishmydata.com/def/cube/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 pmd:ontology a owl:Ontology;
   rdfs:label "Publish My Data Cube Extensions Ontology";
+  rdfs:comment "This ontology extends the RDF Data Cube Vocabulary to support ratio observations and provides some commonly-used dimension properties" ;
   dcterms:description "This ontology extends the RDF Data Cube Vocabulary to support ratio observations and provides some commonly-used dimension properties";
   pmd:contactEmail "hello@swirrl.com";
   dcterms:issued "2015-12-02"^^xsd:date;

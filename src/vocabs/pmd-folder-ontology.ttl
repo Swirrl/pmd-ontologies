@@ -9,6 +9,11 @@
 
 @prefix folder: <http://publishmydata.com/def/ontology/folder/> .
 
+folder:ontology a owl:Ontology;
+  rdfs:label "Publish My Data Folder Ontology";
+  rdfs:comment "TODO - add comment" ;
+  .
+
 folder:parentFolder a rdf:Property;
   rdfs:label "Parent Folder";
   rdfs:subPropertyOf skos:broader;
