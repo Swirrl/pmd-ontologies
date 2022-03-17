@@ -7,7 +7,7 @@
 
 <http://publishmydata.com/def/pmdgeo> rdf:type  owl:Ontology;
   rdfs:label "Publish My Data Geometry Ontology";
-  rdfs:comment "The PMD Geometry Ontology extends GeoSPARQL to support GeoJSON.";
+  rdfs:comment "The PMD Geometry Ontology extends OGC GeoSPARQL to support GeoJSON, and OS spatial relations to support string representations of grid references.";
   rdfs:seeAlso <http://www.opengis.net/ont/geosparql>;
   .
 
@@ -33,4 +33,29 @@ pmdgeo:simplificationPercent a rdf:Property;
   rdfs:domain geo:Geometry;
   rdfs:range xsd:integer;
   rdfs:isDefinedBy <http://publishmydata.com/def/pmdgeo>;
-.
+  .
+
+<http://publishmydata.com/def/pmdgeo/spatialrelations/fourFigureGridReference> a rdf:Property;
+  rdfs:label "Ordnance Survey 4 Figure Grid Reference";
+  rdfs:comment "A string representation of an Ordnance Survey 4 figure grid reference (e.g. SJ8398) which denotes a 1km x 1km square.";
+  rdfs:isDefinedBy <http://publishmydata.com/def/pmdgeo>;
+  rdfs:seeAlso <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/oneKMGridReference>;
+  .
+
+<http://publishmydata.com/def/pmdgeo/spatialrelations/sixFigureGridReference> a rdf:Property;
+  rdfs:label "Ordnance Survey 6 Figure Grid Reference";
+  rdfs:comment "A string representation of an Ordnance Survey 6 figure grid reference (e.g. SJ838980) which denotes a 100m x 100m square.";
+  rdfs:isDefinedBy <http://publishmydata.com/def/pmdgeo>;
+  .
+
+<http://publishmydata.com/def/pmdgeo/spatialrelations/eightFigureGridReference> a rdf:Property;
+  rdfs:label "Ordnance Survey 8 Figure Grid Reference";
+  rdfs:comment "A string representation of an Ordnance Survey 8 figure grid reference (e.g. SJ83819805) which denotes a 10m x 10m square.";
+  rdfs:isDefinedBy <http://publishmydata.com/def/pmdgeo>;
+  .
+
+<http://publishmydata.com/def/pmdgeo/spatialrelations/tenFigureGridReference> a rdf:Property;
+  rdfs:label "Ordnance Survey 10 Figure Grid Reference";
+  rdfs:comment "A string representation of an Ordnance Survey 10 figure grid reference (e.g. SJ8381998052) which denotes a 1m x 1m square.";
+  rdfs:isDefinedBy <http://publishmydata.com/def/pmdgeo>;
+  .
